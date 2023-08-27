@@ -6,11 +6,13 @@ function Accordion({ items}) {
 
 // eventHandler out side the map function
     const handleClick = (nextIndex) => {
-        if (expandedIndex === nextIndex) {
-            setExpandedIndex(-1);
-        }else{
-            setExpandedIndex(nextIndex);
-        }
+        setExpandedIndex((currentExpandedIndex) => {
+            if (currentExpandedIndex === nextIndex) {
+                return -1;
+            } else {
+                return nextIndex;
+            }
+        });
     };
 
     const renderedItems = items.map((item, index) => {
