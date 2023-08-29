@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef  } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { GoChevronDown } from 'react-icons/go';
 import Panel from './Panel';
 
@@ -6,13 +6,9 @@ function Dropdown({ options, value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const divEl = useRef();
 
-  useEffect (() => {
+  useEffect(() => {
     const handler = (event) => {
-      if (!divEl.current) {
-        return;
-      }
-
-      if (!divEl.current.contains(event.target)){
+      if (!divEl.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -29,9 +25,7 @@ function Dropdown({ options, value, onChange }) {
   };
 
   const handleOptionClick = (option) => {
-    // CLOSE DROPDOWN
     setIsOpen(false);
-    // WHAT OPTION DID THE USER CLICK ON???
     onChange(option);
   };
 
@@ -56,11 +50,7 @@ function Dropdown({ options, value, onChange }) {
         {value?.label || 'Select...'}
         <GoChevronDown className="text-lg" />
       </Panel>
-      {isOpen && (
-        <Panel className="absolute top-full">
-          {renderedOptions}
-        </Panel>
-      )}
+      {isOpen && <Panel className="absolute top-full">{renderedOptions}</Panel>}
     </div>
   );
 }
